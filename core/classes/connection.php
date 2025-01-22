@@ -3,10 +3,10 @@
 // try for connect with class
 
 class Connect {
-    protected static $servername = "localhost";
-    protected static $db_name="savvorly";
-    protected static $username = "root";
-    protected static $password = "";
+    protected static $servername = "sql12.freesqldatabase.com";
+    protected static $db_name="sql12759111";
+    protected static $username = "sql12759111";
+    protected static $password = "ajw42zg1a9";
     protected static $pdo;
     public function __construct() { }
 
