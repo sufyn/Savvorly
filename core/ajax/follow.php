@@ -17,7 +17,7 @@ if(isset($_POST['follow']) && !empty($_POST['follow'])){
         'status' => '0'
         ];
 
-        Tweet::create('notifications' , $data_notify);
+        weet::create('notifications' , $data_notify);
         
     } 
     // end
@@ -41,7 +41,7 @@ if(isset($_POST['unfollow']) && !empty($_POST['unfollow'])){
           'type' => "'follow'" ,
         ];
 
-        Tweet::delete('notifications' , $data);
+        weet::delete('notifications' , $data);
         
     } 
 

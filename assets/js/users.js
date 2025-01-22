@@ -1,46 +1,46 @@
 $(function(){
 	
 
-    $(document).on('click','.retweets-u', function(){
-        var tweet_id    = $(this).data('tweet');
+    $(document).on('click','.reweets-u', function(){
+        var weet_id    = $(this).data('weet');
       
         
-    //    console.log(tweet_id);
+    //    console.log(weet_id);
     
-        $.post('core/ajax/users.php', {retweetby:tweet_id}, function(data){
+        $.post('core/ajax/users.php', {reweetby:weet_id}, function(data){
             $('.popupUsers').html(data);
              
-            $('.close-retweet-popup').click(function(){
-                $('.retweet-popup').hide();
+            $('.close-reweet-popup').click(function(){
+                $('.reweet-popup').hide();
             })
             $(document).click(function(e){
-				if( $(e.target).closest('.retweet-popup-body-wrap').length > 0 ) {
+				if( $(e.target).closest('.reweet-popup-body-wrap').length > 0 ) {
 					return false;
 				}
 			    
-				$('.retweet-popup').hide();
+				$('.reweet-popup').hide();
 			})
         });
     });
 
     $(document).on('click','.likes-u', function(){
-        var tweet_id    = $(this).data('tweet');
+        var weet_id    = $(this).data('weet');
       
         
-    //    console.log(tweet_id);
+    //    console.log(weet_id);
     
-        $.post('core/ajax/users.php', {likeby:tweet_id}, function(data){
+        $.post('core/ajax/users.php', {likeby:weet_id}, function(data){
             $('.popupUsers').html(data);
              
-            $('.close-retweet-popup').click(function(){
-                $('.retweet-popup').hide();
+            $('.close-reweet-popup').click(function(){
+                $('.reweet-popup').hide();
             })
             $(document).click(function(e){
-				if( $(e.target).closest('.retweet-popup-body-wrap').length > 0 ) {
+				if( $(e.target).closest('.reweet-popup-body-wrap').length > 0 ) {
 					return false;
 				}
 			    
-				$('.retweet-popup').hide();
+				$('.reweet-popup').hide();
 			})
         });
     });
@@ -54,15 +54,15 @@ $(function(){
         $.post('core/ajax/users.php', {following:user_id}, function(data){
             $('.popupUsers').html(data);
              
-            $('.close-retweet-popup').click(function(){
-                $('.retweet-popup').hide();
+            $('.close-reweet-popup').click(function(){
+                $('.reweet-popup').hide();
             })
             $(document).click(function(e){
-				if( $(e.target).closest('.retweet-popup-body-wrap').length > 0 ) {
+				if( $(e.target).closest('.reweet-popup-body-wrap').length > 0 ) {
 					return false;
 				}
 			    
-				$('.retweet-popup').hide();
+				$('.reweet-popup').hide();
 			})
         });
     });
@@ -76,15 +76,15 @@ $(function(){
         $.post('core/ajax/users.php', {follower:user_id}, function(data){
             $('.popupUsers').html(data);
              
-            $('.close-retweet-popup').click(function(){
-                $('.retweet-popup').hide();
+            $('.close-reweet-popup').click(function(){
+                $('.reweet-popup').hide();
             })
             $(document).click(function(e){
-				if( $(e.target).closest('.retweet-popup-body-wrap').length > 0 ) {
+				if( $(e.target).closest('.reweet-popup-body-wrap').length > 0 ) {
 					return false;
 				}
 			    
-				$('.retweet-popup').hide();
+				$('.reweet-popup').hide();
 			})
         });
     });
@@ -95,20 +95,20 @@ $(function(){
 
 
 $(document).on('click','.reply', function(){
-    var tweet_id    = $(this).data('tweet');
+    var weet_id    = $(this).data('weet');
     var user_id     = $(this).data('user');
     $counter        = $(this).find(".likes-count");
     $count          = $counter.text();
     $button         = $(this);
     
     
-   console.log(tweet_id);
+   console.log(weet_id);
    console.log(user_id);
-    $.post('core/ajax/comment.php', {showReply:tweet_id,user_id:user_id}, function(data){
+    $.post('core/ajax/comment.php', {showReply:weet_id,user_id:user_id}, function(data){
         $('.popupComment').html(data);
          
-        $('.close-retweet-popup').click(function(){
-            $('.retweet-popup').hide();
+        $('.close-reweet-popup').click(function(){
+            $('.reweet-popup').hide();
         })
     });
 });

@@ -23,8 +23,8 @@ $(document).on('click','.follow-btn', function(e){
                     $('.count-followers').html(data);
             
         // $counter.text(data);
-        // $button.removeClass('retweeted').addClass('retweet');
-        // $c.removeClass('retweeted-i').addClass('retweet-i');			
+        // $button.removeClass('reweeted').addClass('reweet');
+        // $c.removeClass('reweeted-i').addClass('reweet-i');			
 
      });
     } else {
@@ -43,8 +43,8 @@ $(document).on('click','.follow-btn', function(e){
 
           
             // $counter.text(data);
-            // $button.removeClass('retweeted').addClass('retweet');
-            // $c.removeClass('retweeted-i').addClass('retweet-i');			
+            // $button.removeClass('reweeted').addClass('reweet');
+            // $c.removeClass('reweeted-i').addClass('reweet-i');			
     
          });
     }

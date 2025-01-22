@@ -85,7 +85,7 @@
                     <li><a href="#">Developers</a></li>
                     <li><a href="#">Directory</a></li>
                     <li><a href="#">Settings</a></li>
-                    <li>© 2021 savvorly Clone</li>
+                    <li>© 2025 savvorly</li>
                 </ul>
             </footer>
         </main>

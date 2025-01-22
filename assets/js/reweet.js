@@ -1,8 +1,8 @@
 $(function () {
   $(document).on("click", ".option", function (e) {
-    var tweet_id = $(this).data("tweet");
+    var weet_id = $(this).data("weet");
     var user_id = $(this).data("user");
-    var retweeted_it = $(this).data("retweeted");
+    var reweeted_it = $(this).data("reweeted");
     var status = $(this).data("status");
 
     $counter = $(this).find(".likes-count");
@@ -15,11 +15,11 @@ $(function () {
     var qoq = $(this).data("qoq");
 
     $.post(
-      "core/ajax/retweet.php",
+      "core/ajax/reweet.php",
       {
-        option: tweet_id,
+        option: weet_id,
         user_id: user_id,
-        retweeted: retweeted_it,
+        reweeted: reweeted_it,
         sign: sign,
         tmp: flag,
         qoq: qoq,
@@ -33,13 +33,13 @@ $(function () {
             return false;
           }
 
-          $(".retweet-div").hide();
+          $(".reweet-div").hide();
         });
       }
     );
 
-    $(document).one("click", ".retweet-i", function (event) {
-      var tweet_id = $(this).data("tweet");
+    $(document).one("click", ".reweet-i", function (event) {
+      var weet_id = $(this).data("weet");
       var user_id = $(this).data("user");
       $c = $(this);
 
@@ -48,15 +48,15 @@ $(function () {
       event.stopImmediatePropagation();
 
       $.post(
-        "core/ajax/retweet.php",
-        { retweet: tweet_id, user_id: user_id, isQoute: flag, qoq: qoq },
+        "core/ajax/reweet.php",
+        { reweet: weet_id, user_id: user_id, isQoute: flag, qoq: qoq },
         function (data) {
-          // $('.popupTweet').html(data);
+          // $('.popupweet').html(data);
 
           $counter.text(data);
-          $button.removeClass("retweet").addClass("retweeted");
-          $c.removeClass("retweet-i").addClass("retweeted-i");
-          $(".retweet-div").hide();
+          $button.removeClass("reweet").addClass("reweeted");
+          $c.removeClass("reweet-i").addClass("reweeted-i");
+          $(".reweet-div").hide();
 
           // $.ajax({
           // 	url: 'http://localhost/savvorly/home.php',
@@ -72,27 +72,27 @@ $(function () {
       );
     });
 
-    $(document).one("click", ".retweeted-i", function (event) {
-      var tweet_id = $(this).data("tweet");
+    $(document).one("click", ".reweeted-i", function (event) {
+      var weet_id = $(this).data("weet");
       var user_id = $(this).data("user");
       var status = $(this).data("status");
 
       $c = $(this);
 
       event.stopImmediatePropagation();
-      console.log(tweet_id);
+      console.log(weet_id);
       $.post(
-        "core/ajax/retweet.php",
-        { unretweet: tweet_id, user_id: user_id },
+        "core/ajax/reweet.php",
+        { unreweet: weet_id, user_id: user_id },
         function (data) {
           //  if (data == 0)
           //   $counter.text('');
           // else
           $counter.text(data);
-          $button.removeClass("retweeted").addClass("retweet");
-          $c.removeClass("retweeted-i").addClass("retweet-i");
+          $button.removeClass("reweeted").addClass("reweet");
+          $c.removeClass("reweeted-i").addClass("reweet-i");
 
-          $(".retweet-div").hide();
+          $(".reweet-div").hide();
           if (!status) location.reload();
           else history.go(-1);
         }
@@ -100,23 +100,23 @@ $(function () {
     });
 
     $(document).on("click", ".qoute", function () {
-      var tweet_id = $(this).data("tweet");
+      var weet_id = $(this).data("weet");
       var user_id = $(this).data("user");
       $counter = $(this).find(".likes-count");
       $count = $counter.text();
       $button = $(this);
 
-      // console.log(tweet_id);
-      // console.log($retweeted_it);
+      // console.log(weet_id);
+      // console.log($reweeted_it);
       // console.log($sign);
       $.post(
-        "core/ajax/retweet.php",
-        { showPopup: tweet_id, user_id: user_id },
+        "core/ajax/reweet.php",
+        { showPopup: weet_id, user_id: user_id },
         function (data) {
-          $(".popupTweet").html(data);
+          $(".popupweet").html(data);
 
-          $(".close-retweet-popup").click(function () {
-            $(".retweet-popup").hide();
+          $(".close-reweet-popup").click(function () {
+            $(".reweet-popup").hide();
           });
         }
       );
@@ -124,8 +124,8 @@ $(function () {
   });
 
   $(document).one("click", ".qoute-it", function (event) {
-    $(".retweet-popup").addClass("active");
-    var tweet_id = $(this).data("tweet");
+    $(".reweet-popup").addClass("active");
+    var weet_id = $(this).data("weet");
     var user_id = $(this).data("user");
     var flag = $(this).data("tmp");
     var qoq = $(this).data("qoq");
@@ -134,29 +134,29 @@ $(function () {
 
     // tricky hint each function to select one class only
     var comment;
-    $(".retweet-msg").each(function () {
+    $(".reweet-msg").each(function () {
       comment = $(this).val();
     });
 
-    console.log(tweet_id);
+    console.log(weet_id);
     console.log(user_id);
     console.log(comment);
 
     $.post(
-      "core/ajax/retweet.php",
+      "core/ajax/reweet.php",
       {
-        qoute: tweet_id,
+        qoute: weet_id,
         user_id: user_id,
         comment: comment,
         isQoute: flag,
         qoq: qoq,
       },
       function (data) {
-        $(".retweet-popup").hide();
+        $(".reweet-popup").hide();
         location.reload();
 
         // $counter.text(data);
-        // $button.removeClass('retweet').addClass('retweeted');
+        // $button.removeClass('reweet').addClass('reweeted');
       }
     );
   });

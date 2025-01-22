@@ -247,13 +247,13 @@
   
   /* POSTS OF savvorly */
   
-  #mine .box-tweet {
+  #mine .box-weet {
 	margin-top: 15px;
 	margin-left: 27%;
 	transition: 0.5s;
 	cursor: pointer;
   }
-  #mine .box-tweet:hover {
+  #mine .box-weet:hover {
 	transition: 0.5s;
 	background-color: #f8f8f8;
   }
@@ -277,13 +277,13 @@
 	transition: 0.5s;
 	background-color: #f8f8f8;
   }
-  #mine .img-user-tweet {
+  #mine .img-user-weet {
 	height: 49px;
 	width: 49px;
 	border-radius: 50px;
   }
   
-  #mine .grid-tweet {
+  #mine .grid-weet {
 	display: grid;
 	grid-template-columns: 10% 90%;
 	margin-left: 15px;
@@ -294,12 +294,12 @@
 	font-size: 15px;
   }
   
-  #mine .img-post-tweet {
+  #mine .img-post-weet {
 	height: 80%;
 	width: 80%;
 	border-radius: 10px;
   }
-  #mine .img-post-retweet {
+  #mine .img-post-reweet {
 	height: 50%;
 	width: 50%;
 	border-radius: 10px;
@@ -327,7 +327,7 @@
  
   /* end */
   
-  #mine .mt-post-tweet {
+  #mine .mt-post-weet {
 	margin-top: 10px;
   }
   
@@ -367,7 +367,7 @@
 	background-color: #bee4fb;
 	color: #9157fc;
   }
-  #mine .hover-reaction-retweet:hover {
+  #mine .hover-reaction-reweet:hover {
 	background-color: #fafbed;
 	color: rgb(22, 207, 22);
   }
@@ -887,7 +887,7 @@
 	color: #716868;
 
 }
-.hash-tweet {
+.hash-weet {
 	color: #9157fc;
 	font-weight: 500;
 	position:relative ;z-index: 40;
@@ -912,7 +912,7 @@
 	display: block;
 }
 
-.retweet-popup-body-wrap{
+.reweet-popup-body-wrap{
 	width: 580px;
 	height: auto;
 	margin: 0px auto;
@@ -931,13 +931,13 @@
 	max-height: 500px;
 	
 }
-.retweet-popup-heading h3{
+.reweet-popup-heading h3{
     font-weight: normal;
     font-size: 16px;
     color: black;
 }
 
-.retweet-popup-heading{
+.reweet-popup-heading{
 	text-align: center;
 	padding: 7px;
 	border-bottom: 1px solid #dde2e6;
@@ -955,14 +955,14 @@
 	/* padding-top: 10px; */
 	/* margin-top: 10px; */
 }
-.retweet-popup-heading button{
+.reweet-popup-heading button{
 	border: none;
 	background: none;
 	margin: 0px;
 	padding: 0px;
 	cursor: pointer;
 }
-.retweet-popup-heading span{
+.reweet-popup-heading span{
 	float: right;
 	position: relative;
 	top: -18px;
@@ -971,74 +971,74 @@
 	cursor:pointer;
 }
 
-.retweet-popup-heading span i{
+.reweet-popup-heading span i{
 	color: #afb1b3;
 }
 
-.retweet-popup-input{
+.reweet-popup-input{
 	background: rgba(127, 196, 0, 0.18);
 	padding: 10px;
 }
-.retweet-popup-input-inner{
+.reweet-popup-input-inner{
 	width:99%;
 }
-.retweet-popup-input-inner input[type="text"]{
+.reweet-popup-input-inner input[type="text"]{
 	width: 96%;
 	padding: 8px 10px;
 	border-radius: 0px;
 	border: 1px solid #dedede;
 }
-.retweet-popup-inner-body{
+.reweet-popup-inner-body{
 
 }
 
-.retweet-popup-inner-body-inner{
+.reweet-popup-inner-body-inner{
 
 }
-.retweet-popup-comment-wrap{
+.reweet-popup-comment-wrap{
 	width: 95%;
 	margin: 10px auto;
 	overflow: hidden;
 }
-.retweet-popup-comment-head{
+.reweet-popup-comment-head{
 	overflow: hidden;
 	float: left;
 }
-.retweet-popup-comment-head img{
+.reweet-popup-comment-head img{
 	width: 45px;
 	height: 45px;
 	border-radius: 5px;
 }
-.retweet-popup-comment-headline{
+.reweet-popup-comment-headline{
 	float: left
 }
 
-.retweet-popup-comment-headline a{
+.reweet-popup-comment-headline a{
 	color:#333;
 	text-decoration: none;
 	font-weight: bold;
 }
-.retweet-popup-comment-headline span{
+.reweet-popup-comment-headline span{
 	color: #aeaeae;
 	font-weight: normal;
 	font-size: 12px;
 }
-.retweet-popup-comment-body{
+.reweet-popup-comment-body{
 	float: left;
 	overflow: hidden;
 	color: #424242;
 	font-size: 14px;
 }
-.retweet-popup-comment-right-wrap{
+.reweet-popup-comment-right-wrap{
 	width: 90%;
 	overflow: hidden;
 	float: left;
 	margin: 0px 0px 0px 5px;
 }
-.retweet-popup-footer-right{
+.reweet-popup-footer-right{
 	float: right;
 }
-.retweet-popup-footer-right button[type="submit"]{
+.reweet-popup-footer-right button[type="submit"]{
 	background: #9157fc;
 	padding: 8px 10px;
 	border: 1px solid #E7E7E7;
@@ -1048,7 +1048,7 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
-.retweet-popup-footer-right button[type="submit"]:hover{
+.reweet-popup-footer-right button[type="submit"]:hover{
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#9157fc+0,207ce5+100;Blue+3d+%237 */
 	background: #9157fc; /* Old browsers */
 	background: -moz-linear-gradient(top, #9157fc 0%, #207ce5 100%); /* FF3.6-15 */
@@ -1056,11 +1056,11 @@
 	background: linear-gradient(to bottom, #9157fc 0%,#207ce5 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9157fc', endColorstr='#207ce5',GradientType=0 ); /* IE6-9 */
 }
-.retweet-popup-footer-right button[type="submit"]:active{
+.reweet-popup-footer-right button[type="submit"]:active{
 	background: #9157fc;
 	box-shadow: inset 0px 0px 3px black;
 }
-.retweet-popup-footer-right button i{
+.reweet-popup-footer-right button i{
 	margin: 0px 3px 0px 0px;
 	font-size: 20px;
 	font-weight: bold;
@@ -1075,12 +1075,12 @@
 	margin-left: 40px;
 	
 }
-.retweet-name-i {
+.reweet-name-i {
 	font-size: 17px;
 	margin-right: 5px;
 	
 }
-#mine .retweeted {
+#mine .reweeted {
 	color: rgb(22, 207, 22);
 }
 
@@ -1112,14 +1112,14 @@
   transition: 0.5s;
   background-color: rgb(186, 202, 216);
 } 
-.tweet-name {
+.weet-name {
 	margin-top: 5px;
 	font-size: 18px;
 	/* padding: 10px; */
 
 }
 
-#mine .retweet-div {
+#mine .reweet-div {
 	width: 140px;
 	/* height: 100px; */
 	background-color: white;
@@ -1131,21 +1131,21 @@
 	right: 55%;
 	
 }
-#mine .retweet-div li {
+#mine .reweet-div li {
 		border-bottom: 1px solid #d8e1eb;
 		/* text-align: center; */
 		padding: 10px;
 		color: #000000;
 		font-size: 15px;
 }
-#mine .retweet-div .icon {
+#mine .reweet-div .icon {
 	text-align: left;
 	/* margin-left: 30px; */
 	color: gray ;
 	width: 20%;
 	float: left;
 }
-#mine .retweet-div .option-text{
+#mine .reweet-div .option-text{
 	/* text-align: right; */
 	/* margin-left: 30px; */
 	display: inline-block;
@@ -1154,18 +1154,18 @@
 	
 	
 }
-#mine .retweet-div span {
+#mine .reweet-div span {
 	text-align: right;
 	/* margin-left: 30px; */
 	
 }
 
 
-#mine .retweet-div li:hover {
+#mine .reweet-div li:hover {
 background-color: #F7F7F7;
 border-radius: 10px;
 }
-#mine .retweet-div a:hover {
+#mine .reweet-div a:hover {
     text-decoration: none;
 }
 .option {
@@ -1323,23 +1323,23 @@ border-radius: 10px;
 		-moz-box-shadow: 0px 3px 5px -1px rgba(204, 174, 204, 1);
 		box-shadow: 0px 3px 5px -1px rgba(204, 174, 204, 1);
 	  }
-	  #mine .box-tweet {
+	  #mine .box-weet {
 		margin-top: 15px;
 		margin-left: 8%;
 		transition: 0.5s;
 		cursor: pointer;
 	  }
-	  #mine .img-post-tweet {
+	  #mine .img-post-weet {
 		height: 70%;
 		width: 70%;
 		border-radius: 10px;
 	  }
-	  #mine .img-post-retweet{
+	  #mine .img-post-reweet{
 		height: 50%;
 		width: 50%;
 		border-radius: 10px;
 	  }
-	  #mine .img-user-tweet {
+	  #mine .img-user-weet {
 		height: 38px;
 		width: 38px;
 		border-radius: 50px;
@@ -1350,7 +1350,7 @@ border-radius: 10px;
 		
 	  }
 
-	  .retweet-popup-body-wrap{
+	  .reweet-popup-body-wrap{
 		width: 400px;
 		height: auto;
 		margin: 0px auto;
@@ -1450,23 +1450,23 @@ border-radius: 10px;
 		-moz-box-shadow: 0px 3px 5px -1px rgba(204, 174, 204, 1);
 		box-shadow: 0px 3px 5px -1px rgba(204, 174, 204, 1);
 	  }
-	  #mine .box-tweet {
+	  #mine .box-weet {
 		margin-top: 15px;
 		margin-left: 8%;
 		transition: 0.5s;
 		cursor: pointer;
 	  }
-	  #mine .img-post-tweet {
+	  #mine .img-post-weet {
 		height: 80%;
 		width: 80%;
 		border-radius: 10px;
 	  }
-	  #mine .img-post-retweet{
+	  #mine .img-post-reweet{
 		height: 50%;
 		width: 50%;
 		border-radius: 10px;
 	  }
-	  #mine .img-user-tweet {
+	  #mine .img-user-weet {
 		height: 38px;
 		width: 38px;
 		border-radius: 50px;
@@ -1476,7 +1476,7 @@ border-radius: 10px;
 		
 	  }
 
-	  .retweet-popup-body-wrap{
+	  .reweet-popup-body-wrap{
 		width: 400px;
 		height: auto;
 		margin: 0px auto;
@@ -1537,17 +1537,17 @@ border-radius: 10px;
     #icon-search{
         top:13px;
     }
-	#mine .img-post-tweet {
+	#mine .img-post-weet {
 		height: 70%;
 		width: 70%;
 		border-radius: 10px;
 	  }
-	  #mine .img-post-retweet{
+	  #mine .img-post-reweet{
 		height: 50%;
 		width: 50%;
 		border-radius: 10px;
 	  }
-	  #mine .img-user-tweet {
+	  #mine .img-user-weet {
 		height: 30px;
 		width: 30px;
 		border-radius: 50px;

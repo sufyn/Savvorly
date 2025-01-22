@@ -2,7 +2,7 @@
 namespace validation;
 require_once 'ValidInterface.php';
 require_once 'Max20.php';
-require_once 'MaxTweet.php';
+require_once 'Maxweet.php';
 require_once 'Min5.php';
 require_once 'Numeric.php';
 require_once 'Str.php';
@@ -42,7 +42,7 @@ class Validator {
             } else if ($rule == 'max:100') {
                 $error =  $this->makeValidation(new Max100($name , $value));
             } else if ($rule == 'max:14') {
-                $error =  $this->makeValidation(new MaxTweet($name , $value));
+                $error =  $this->makeValidation(new Maxweet($name , $value));
             } else if ($rule == 'min:5') {
                 $error =  $this->makeValidation(new Min5($name , $value));
             } else if ($rule == 'numeric') {

@@ -27,7 +27,7 @@ $(function(){
        
    });
 
-   $(document).on('change','#tweet_img', function(e){
+   $(document).on('change','#weet_img', function(e){
 		 console.log(this);
         $glo = this;
     if (this.files && this.files[0]) {
@@ -50,7 +50,7 @@ $(function(){
 		 
            let container =  document.querySelector(".upload-photo");
            container.style.display = "none";
-            let control =$("#tweet_img");
+            let control =$("#weet_img");
             control.val("");  
    });
 });

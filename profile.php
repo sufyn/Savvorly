@@ -8,9 +8,9 @@
         $user_id = $_SESSION['user_id'];
         $user = User::getData($user_id);
         $who_users = Follow::whoToFollow($user_id);
-        $tweets = Tweet::tweetsUser($profileData->id);
-        $liked_tweets = Tweet::likedTweets($profileData->id);
-        $media_tweets = Tweet::mediaTweets($profileData->id);
+        $weets = weet::weetsUser($profileData->id);
+        $liked_weets = weet::likedweets($profileData->id);
+        $media_weets = weet::mediaweets($profileData->id);
         $notify_count = User::CountNotification($user_id);
       
         if (!$profileData)
@@ -171,8 +171,8 @@
                        </div>
                        <div class="col-xs-10">
                            <span class="home-name"> <?php echo $profileData->name; ?></span>
-                           <p class="home-tweets-num">
-                              <?php echo Tweet::countTweets($profileData->id); ?> Posts</p>
+                           <p class="home-weets-num">
+                              <?php echo weet::countweets($profileData->id); ?> Posts</p>
                       </div>
                  </div>
 
@@ -372,19 +372,19 @@
                   <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
-                    <?php include 'includes/tweets.php'; ?>
+                    <?php include 'includes/weets.php'; ?>
                         
                   </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <?php
-                       $tweets = $media_tweets;
-                       include 'includes/tweets.php'; ?>
+                       $weets = $media_weets;
+                       include 'includes/weets.php'; ?>
                     </div>
                     <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                      
                        <?php
-                       $tweets = $liked_tweets;
-                       include 'includes/tweets.php'; ?>
+                       $weets = $liked_weets;
+                       include 'includes/weets.php'; ?>
                   
                   </div>
                   </div>
@@ -467,7 +467,7 @@
             <script type="text/javascript" src="assets/js/hashtag.js"></script>
           <script type="text/javascript" src="assets/js/like.js"></script>
           <script type="text/javascript" src="assets/js/comment.js?v=<?php echo time(); ?>"></script>
-          <script type="text/javascript" src="assets/js/retweet.js?v=<?php echo time(); ?>"></script>
+          <script type="text/javascript" src="assets/js/reweet.js?v=<?php echo time(); ?>"></script>
       <script src="https://kit.fontawesome.com/38e12cc51b.js" crossorigin="anonymous"></script>
       <!-- <script src="assets/js/jquery-3.4.1.slim.min.js"></script> -->
       <script src="assets/js/jquery-3.5.1.min.js"></script>

@@ -10,7 +10,7 @@
    header('location: index.php');
 
 
-   $tweets = Tweet::tweets($user_id);
+   $weets = weet::weets($user_id);
    $who_users = Follow::whoToFollow($user_id);
    $notify_count = User::CountNotification($user_id);
  
@@ -74,7 +74,7 @@
           Follow or unfollow people. get notificaction if any action happen. Search users by name or username. and more!
         </p>
         <p>By Signing Up then you followed
-          <a style="color:#207ce5;" href="amin">@amin</a> 
+          <a style="color:#207ce5;" href="amin">@Savvorly</a> 
             by default to see posts. you can change it anytime!</p>
       </div>
       
@@ -214,7 +214,7 @@
                     </div>
             
                     <div class="text">
-                      <form class="" action="handle/handleTweet.php" method="post" enctype="multipart/form-data">
+                      <form class="" action="handle/handleweet.php" method="post" enctype="multipart/form-data">
                         <div class="inner">
             
                             <img src="assets/images/users/<?php echo $user->img ?>" alt="profile photo">
@@ -228,7 +228,7 @@
                             
                          <!-- tmp image upload place -->
                         <div class="position-relative upload-photo"> 
-                          <img class="img-upload-tmp" src="assets/images/tweets/tweet-60666d6b426a1.jpg" alt="">
+                          <img class="img-upload-tmp" src="assets/images/weets/weet-60666d6b426a1.jpg" alt="">
                           <div class="icon-bg">
                           <i id="#upload-delete-tmp" class="fas fa-times position-absolute upload-delete"></i>  
 
@@ -243,11 +243,11 @@
                             
                               
                            
-                            <label for="tweet_img" class="ml-3 mb-2 uni">
+                            <label for="weet_img" class="ml-3 mb-2 uni">
 
                               <i class="fa fa-image item1-pair"></i>
                             </label>
-                            <input class="tweet_img" id="tweet_img" type="file" name="tweet_img">    
+                            <input class="weet_img" id="weet_img" type="file" name="weet_img">    
                                 
                           </div>
                           <div class="hash-box">
@@ -258,19 +258,19 @@
                               </ul>
                           
                           </div>
-                          <?php if (isset($_SESSION['errors_tweet'])) { 
+                          <?php if (isset($_SESSION['errors_weet'])) { 
                             
-                            foreach($_SESSION['errors_tweet'] as $t) {?>
+                            foreach($_SESSION['errors_weet'] as $t) {?>
                             
                           <div class="alert alert-danger">
                           <span class="item2-pair"> <?php echo $t; ?> </span>
                           </div>
                          
-                         <?php } } unset($_SESSION['errors_tweet']); ?>
+                         <?php } } unset($_SESSION['errors_weet']); ?>
                           <div>
                          
                             <span class="bioCount" id="count">140</span>
-                            <input id="tweet-input" type="submit" name="tweet" value="Post" class="submit"
+                            <input id="weet-input" type="submit" name="weet" value="Post" class="submit"
                             >
                           </div>
                       </div>
@@ -292,7 +292,7 @@
           </div>
           <div class="box-fixed" id="box-fixed"></div>
             
-          <?php  include 'includes/tweets.php'; ?>
+          <?php  include 'includes/weets.php'; ?>
 
         </div>
 
@@ -371,7 +371,7 @@
           <script type="text/javascript" src="assets/js/hashtag.js"></script>
           <script type="text/javascript" src="assets/js/like.js"></script>
           <script type="text/javascript" src="assets/js/comment.js?v=<?php echo time(); ?>"></script>
-          <script type="text/javascript" src="assets/js/retweet.js?v=<?php echo time(); ?>"></script>
+          <script type="text/javascript" src="assets/js/reweet.js?v=<?php echo time(); ?>"></script>
           <script type="text/javascript" src="assets/js/follow.js?v=<?php echo time(); ?>"></script>
       <script src="https://kit.fontawesome.com/38e12cc51b.js" crossorigin="anonymous"></script>
       <!-- <script src="assets/js/jquery-3.4.1.slim.min.js"></script> -->

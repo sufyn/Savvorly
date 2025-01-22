@@ -3,7 +3,7 @@ namespace validation;
 require_once 'ValidInterface.php';
 
 
-class MaxTweet implements ValidInterface {
+class Maxweet implements ValidInterface {
 
     private $name;
     private $value;

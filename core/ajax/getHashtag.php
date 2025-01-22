@@ -7,7 +7,7 @@
 
 		  if(substr($hashtag, 0,1) === '#'){
 		  	 $trend   = str_replace('#', '', $hashtag);
-		  	 $trend   = Tweet::getTrendByHash($trend);
+		  	 $trend   = weet::getTrendByHash($trend);
 		  	
 		  	 foreach ($trend as $hashtag) {
 		 	   echo '<li><a href="#"><span class="getValue">#'.$hashtag->hashtag.'</span></a></li>';
@@ -16,7 +16,7 @@
 
    	  	 if(substr($mention, 0,1) === '@'){
    	  	 	$mention = str_replace('@', '', $mention);
-   	  	 	$mentions = Tweet::getMention($mention);
+   	  	 	$mentions = weet::getMention($mention);
    	  	 	foreach ($mentions as $mention) {
    	  	 	  echo '<li><div class="nav-right-down-inner">
 						<div class="nav-right-down-left">

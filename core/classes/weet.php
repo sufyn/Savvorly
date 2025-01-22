@@ -1,10 +1,10 @@
 <?php 
 
-class Tweet extends User {
+class weet extends User {
     
     protected static $pdo;
       
-      public static function tweets($user_id) {
+      public static function weets($user_id) {
         $stmt = self::connect()->prepare("SELECT * from `posts`
         WHERE user_id = :user_id OR user_id IN (SELECT following_id from `follow` WHERE follower_id = :user_id)
         ORDER BY post_on DESC");
@@ -12,7 +12,7 @@ class Tweet extends User {
         $stmt->execute();
        return $stmt->fetchAll(PDO::FETCH_OBJ);
       }
-      public static function tweetsUser($user_id) {
+      public static function weetsUser($user_id) {
         $stmt = self::connect()->prepare("SELECT * from `posts`
         WHERE user_id = :user_id
         ORDER BY post_on DESC");
@@ -20,7 +20,7 @@ class Tweet extends User {
         $stmt->execute();
        return $stmt->fetchAll(PDO::FETCH_OBJ);
       }
-      public static function likedTweets($user_id) {
+      public static function likedweets($user_id) {
         $stmt = self::connect()->prepare("SELECT * from `posts`
         WHERE id IN (SELECT post_id from `likes` WHERE user_id = :user_id)
         ORDER BY post_on DESC");
@@ -28,19 +28,19 @@ class Tweet extends User {
         $stmt->execute();
        return $stmt->fetchAll(PDO::FETCH_OBJ);
       }
-      public static function mediaTweets($user_id) {
+      public static function mediaweets($user_id) {
         $stmt = self::connect()->prepare("SELECT * from `posts`
-        WHERE id IN (SELECT post_id from `tweets` WHERE user_id = :user_id AND img is not null)
+        WHERE id IN (SELECT post_id from `weets` WHERE user_id = :user_id AND img is not null)
         ORDER BY post_on DESC");
         $stmt->bindParam(":user_id" , $user_id , PDO::PARAM_STR);
         $stmt->execute();
        return $stmt->fetchAll(PDO::FETCH_OBJ);
       }
-      public static function comments($tweet_id) {
+      public static function comments($weet_id) {
         $stmt = self::connect()->prepare("SELECT * from `comments`
-        WHERE post_id = :tweet_id
+        WHERE post_id = :weet_id
         ORDER BY time");
-        $stmt->bindParam(":tweet_id" , $tweet_id , PDO::PARAM_STR);
+        $stmt->bindParam(":weet_id" , $weet_id , PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);
       }
@@ -54,22 +54,22 @@ class Tweet extends User {
         return $stmt->fetchAll(PDO::FETCH_OBJ);
       }
 
-      public static function isTweet($tweet_id){
+      public static function isweet($weet_id){
             
-        $stmt = self::connect()->prepare("SELECT * FROM `tweets` 
-        WHERE `post_id` = :tweet_id");
-        $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+        $stmt = self::connect()->prepare("SELECT * FROM `weets` 
+        WHERE `post_id` = :weet_id");
+        $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
         $stmt->execute(); 
 
         if ($stmt->rowCount() > 0) {
             return true;
         } else return false;
     }
-    public static function isRetweet($tweet_id){
+    public static function isReweet($weet_id){
             
-        $stmt = self::connect()->prepare("SELECT * FROM `retweets` 
-        WHERE `post_id` = :tweet_id");
-        $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+        $stmt = self::connect()->prepare("SELECT * FROM `reweets` 
+        WHERE `post_id` = :weet_id");
+        $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
         $stmt->execute(); 
 
         if ($stmt->rowCount() > 0) {
@@ -210,7 +210,7 @@ class Tweet extends User {
             }
             $sql = "INSERT INTO `trends` (`hashtag`, `created_on`) VALUES (:hashtag, CURRENT_TIMESTAMP)";
             foreach ($result as $trend) { 
-                 if (!Tweet::HashtagExist($trend)) {
+                 if (!weet::HashtagExist($trend)) {
                      
                      if($stmt = self::connect()->prepare($sql)){
                          $stmt->execute(array(':hashtag' => $trend));
@@ -221,17 +221,17 @@ class Tweet extends User {
 
        
         
-        public static function getTweetLinks($tweet){
-            $tweet = preg_replace("/(https?:\/\/)([\w]+.)([\w\.]+)/", "<a href='$0' target='_blink'>$0</a>", $tweet);
-            $tweet = preg_replace("/#([\w]+)/", "<a class='hash-tweet' href='#'>$0</a>", $tweet);		
-            $tweet = preg_replace("/@([\w]+)/", "<a class='hash-tweet' href='http://localhost/savvorly/$1'>$0</a>", $tweet);
-            return $tweet;		
+        public static function getweetLinks($weet){
+            $weet = preg_replace("/(https?:\/\/)([\w]+.)([\w\.]+)/", "<a href='$0' target='_blink'>$0</a>", $weet);
+            $weet = preg_replace("/#([\w]+)/", "<a class='hash-weet' href='#'>$0</a>", $weet);		
+            $weet = preg_replace("/@([\w]+)/", "<a class='hash-weet' href='http://localhost/savvorly/$1'>$0</a>", $weet);
+            return $weet;		
         }
-        public static function hashtagAndMentionTweet($tweet){
-            $tweet = preg_replace("/(https?:\/\/)([\w]+.)([\w\.]+)/", "<a href='$0' target='_blink'>$0</a>", $tweet);
-            $tweet = preg_replace("/#([\w]+)/", "<a class='hash-tweet' href='#'>$0</a>", $tweet);		
-            $tweet = preg_replace("/@([\w]+)/", "<a class='hash-tweet' href='#'>$0</a>", $tweet);
-            return $tweet;		
+        public static function hashtagAndMentionweet($weet){
+            $weet = preg_replace("/(https?:\/\/)([\w]+.)([\w\.]+)/", "<a href='$0' target='_blink'>$0</a>", $weet);
+            $weet = preg_replace("/#([\w]+)/", "<a class='hash-weet' href='#'>$0</a>", $weet);		
+            $weet = preg_replace("/@([\w]+)/", "<a class='hash-weet' href='#'>$0</a>", $weet);
+            return $weet;		
         }
         
         public static function countLikes($post_id) {
@@ -242,7 +242,7 @@ class Tweet extends User {
             $count = $stmt->fetch(PDO::FETCH_OBJ);
             return $count->count;
         }
-        public static function countTweets($user_id) {
+        public static function countweets($user_id) {
             $stmt = self::connect()->prepare("SELECT COUNT(user_id) as count FROM `posts`
             WHERE user_id = :user_id");
             $stmt->bindParam(":user_id" , $user_id , PDO::PARAM_STR);
@@ -268,11 +268,11 @@ class Tweet extends User {
             return $count->count;
         }
 
-        public static function countRetweets($tweet_id) {
-            $stmt = self::connect()->prepare("SELECT COUNT(*) as count FROM `retweets`
-            WHERE (`tweet_id` = :tweet_id or `retweet_id` = :tweet_id)  and retweet_msg is null 
-            GROUP BY tweet_id , retweet_id");
-            $stmt->bindParam(":tweet_id" , $tweet_id , PDO::PARAM_STR);
+        public static function countReweets($weet_id) {
+            $stmt = self::connect()->prepare("SELECT COUNT(*) as count FROM `reweets`
+            WHERE (`weet_id` = :weet_id or `reweet_id` = :weet_id)  and reweet_msg is null 
+            GROUP BY weet_id , reweet_id");
+            $stmt->bindParam(":weet_id" , $weet_id , PDO::PARAM_STR);
             $stmt->execute();
             if ($stmt->rowCount() > 0) {
                 $count = $stmt->fetch(PDO::FETCH_OBJ);
@@ -281,12 +281,12 @@ class Tweet extends User {
             
         }
 
-        public static function unLike($user_id, $tweet_id){
+        public static function unLike($user_id, $weet_id){
             
             $stmt = self::connect()->prepare("DELETE FROM `likes` 
-            WHERE `user_id` = :user_id and `post_id` = :tweet_id");
+            WHERE `user_id` = :user_id and `post_id` = :weet_id");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute(); 
 
             if ($stmt->rowCount() > 0) {
@@ -295,12 +295,12 @@ class Tweet extends User {
 
         }
 
-        public static function userLikeIt( $user_id ,$tweet_id){
+        public static function userLikeIt( $user_id ,$weet_id){
             
             $stmt = self::connect()->prepare("SELECT `post_id` , `user_id` FROM `likes` 
-            WHERE `user_id` = :user_id and `post_id` = :tweet_id");
+            WHERE `user_id` = :user_id and `post_id` = :weet_id");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute(); 
 
             if ($stmt->rowCount() > 0) {
@@ -308,24 +308,24 @@ class Tweet extends User {
             } else return false;
 
         }
-        public static function usersLiked($tweet_id){
+        public static function usersLiked($weet_id){
             
             $stmt = self::connect()->prepare("SELECT `post_id` , `user_id` FROM `likes` 
-            WHERE  `post_id` = :tweet_id");
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            WHERE  `post_id` = :weet_id");
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute(); 
 
             return $stmt->fetchAll(PDO::FETCH_OBJ);
 
         }
 
-        public static function userRetweeetedIt($user_id ,$tweet_id){
+        public static function userRetweeetedIt($user_id ,$weet_id){
             
-            $stmt = self::connect()->prepare("SELECT `id` , `user_id` FROM `posts` JOIN `retweets`
+            $stmt = self::connect()->prepare("SELECT `id` , `user_id` FROM `posts` JOIN `reweets`
             on id = post_id
-            WHERE `user_id` = :user_id and (`tweet_id` = :tweet_id or `retweet_id` = :tweet_id)  and retweet_msg is NULL");
+            WHERE `user_id` = :user_id and (`weet_id` = :weet_id or `reweet_id` = :weet_id)  and reweet_msg is NULL");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute(); 
 
             if ($stmt->rowCount() > 0) {
@@ -333,25 +333,25 @@ class Tweet extends User {
             } else return false;
 
         } 
-        public static function usersRetweeeted($tweet_id){
+        public static function usersRetweeeted($weet_id){
             
-            $stmt = self::connect()->prepare("SELECT `id` , `user_id` FROM `posts` JOIN `retweets`
+            $stmt = self::connect()->prepare("SELECT `id` , `user_id` FROM `posts` JOIN `reweets`
             on id = post_id
-            WHERE (`tweet_id` = :tweet_id or `retweet_id` = :tweet_id)  and retweet_msg is NULL");
+            WHERE (`weet_id` = :weet_id or `reweet_id` = :weet_id)  and reweet_msg is NULL");
             // $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute(); 
 
             return $stmt->fetchAll(PDO::FETCH_OBJ);
 
         }
-        public static function checkRetweet($user_id ,$tweet_id){
+        public static function checkReweet($user_id ,$weet_id){
             
-            $stmt = self::connect()->prepare("SELECT `id` , `user_id` FROM `posts` JOIN `retweets`
+            $stmt = self::connect()->prepare("SELECT `id` , `user_id` FROM `posts` JOIN `reweets`
             on id = post_id
-            WHERE `user_id` = :user_id and `post_id` = :tweet_id  and retweet_msg is NULL");
+            WHERE `user_id` = :user_id and `post_id` = :weet_id  and reweet_msg is NULL");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute(); 
 
             if ($stmt->rowCount() > 0) {
@@ -363,14 +363,14 @@ class Tweet extends User {
 
         
 
-        public static function undoRetweet($user_id , $tweet_id) {
+        public static function undoReweet($user_id , $weet_id) {
             
             $stmt = self::connect()->prepare("DELETE FROM `posts` 
-            WHERE `user_id` = :user_id and `id` = :tweet_id
+            WHERE `user_id` = :user_id and `id` = :weet_id
             ");
-            // and id not in (SELECT post_id from `retweets` WHERE retweet_msg is not null)
+            // and id not in (SELECT post_id from `reweets` WHERE reweet_msg is not null)
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute(); 
 
             if ($stmt->rowCount() > 0) {
@@ -378,11 +378,11 @@ class Tweet extends User {
             } else return false;
         }
 
-        public static function retweetRealId($tweet_id , $user_id) {
-            $stmt = self::connect()->prepare("SELECT post_id FROM retweets JOIN posts
+        public static function reweetRealId($weet_id , $user_id) {
+            $stmt = self::connect()->prepare("SELECT post_id FROM reweets JOIN posts
             on id = post_id
-            WHERE (tweet_id = :tweet_id or  retweet_id = :tweet_id) and `user_id` = :user_id");
-            $stmt->bindParam(":tweet_id" , $tweet_id , PDO::PARAM_STR);
+            WHERE (weet_id = :weet_id or  reweet_id = :weet_id) and `user_id` = :user_id");
+            $stmt->bindParam(":weet_id" , $weet_id , PDO::PARAM_STR);
             $stmt->bindParam(":user_id" , $user_id , PDO::PARAM_STR);
             $stmt->execute();
             $id = $stmt->fetch(PDO::FETCH_OBJ);
@@ -392,44 +392,44 @@ class Tweet extends User {
        
         
         
-        public static function likedTweetRealId($tweet_id) {
-            $stmt = self::connect()->prepare("SELECT tweet_id FROM retweets 
-            WHERE post_id = :tweet_id");
-            $stmt->bindParam(":tweet_id" , $tweet_id , PDO::PARAM_STR);
+        public static function likedweetRealId($weet_id) {
+            $stmt = self::connect()->prepare("SELECT weet_id FROM reweets 
+            WHERE post_id = :weet_id");
+            $stmt->bindParam(":weet_id" , $weet_id , PDO::PARAM_STR);
             $stmt->execute();
             $id = $stmt->fetch(PDO::FETCH_OBJ);
-            return $id->tweet_id;
+            return $id->weet_id;
         }
         
-        // public static function getRealId($tweet_id) {
-        //     $stmt = self::connect()->prepare("SELECT post_id FROM retweets 
-        //     WHERE post_id = :tweet_id");
-        //     $stmt->bindParam(":tweet_id" , $tweet_id , PDO::PARAM_STR);
+        // public static function getRealId($weet_id) {
+        //     $stmt = self::connect()->prepare("SELECT post_id FROM reweets 
+        //     WHERE post_id = :weet_id");
+        //     $stmt->bindParam(":weet_id" , $weet_id , PDO::PARAM_STR);
         //     $stmt->execute();
         //     $id = $stmt->fetch(PDO::FETCH_OBJ);
-        //     return $id->tweet_id;
+        //     return $id->weet_id;
         // }
 
-        public static function getTweet($tweet_id){
-            $stmt = self::connect()->prepare("SELECT * FROM `tweets` JOIN `posts` 
-            on posts.id = tweets.post_id 
-            WHERE `post_id` = :tweet_id");
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+        public static function getweet($weet_id){
+            $stmt = self::connect()->prepare("SELECT * FROM `weets` JOIN `posts` 
+            on posts.id = weets.post_id 
+            WHERE `post_id` = :weet_id");
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
-        public static function getComment($tweet_id){
+        public static function getComment($weet_id){
             $stmt = self::connect()->prepare("SELECT * FROM `comments` 
-            WHERE `id` = :tweet_id");
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            WHERE `id` = :weet_id");
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
-        public static function getRetweet($tweet_id){
-            $stmt = self::connect()->prepare("SELECT * FROM `retweets` JOIN `posts` 
+        public static function getReweet($weet_id){
+            $stmt = self::connect()->prepare("SELECT * FROM `reweets` JOIN `posts` 
             on id = post_id 
-            WHERE `post_id` = :tweet_id");
-            $stmt->bindParam(":tweet_id", $tweet_id, PDO::PARAM_INT);
+            WHERE `post_id` = :weet_id");
+            $stmt->bindParam(":weet_id", $weet_id, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ);
         } 
@@ -441,9 +441,9 @@ class Tweet extends User {
      }  
 
      public static function includeHeader($title) {
-        global $tweets;
-        $tweets = $title;
-        include 'includes/tweets.php';
+        global $weets;
+        $weets = $title;
+        include 'includes/weets.php';
     }
 
 

@@ -172,16 +172,16 @@
 
                      <?php foreach($notofication as $notify) { 
                          $user = User::getData($notify->notify_from);
-                         $timeAgo = Tweet::getTimeAgo($notify->time);
+                         $timeAgo = weet::getTimeAgo($notify->time);
                          ?>
                      <?php if ($notify->type == 'like') { 
                         $icon = "<i style='color: red;font-size:30px;' class='fa-heart  fas ml-2'></i>";
                         $msg = "Liked Your Post";
-                        } else if ($notify->type == 'retweet') { 
-                            $icon = "<i style='font-size:30px;color: rgb(22, 207, 22);'  class='fas fa-retweet ml-2'></i>";
+                        } else if ($notify->type == 'reweet') { 
+                            $icon = "<i style='font-size:30px;color: rgb(22, 207, 22);'  class='fas fa-reweet ml-2'></i>";
                             $msg = "Reposted Your Post";
                         } else if ($notify->type == 'qoute') { 
-                            $icon = "<i style='font-size:30px;color: rgb(22, 207, 22);'  class='fas fa-retweet ml-2'></i>";
+                            $icon = "<i style='font-size:30px;color: rgb(22, 207, 22);'  class='fas fa-reweet ml-2'></i>";
                             $msg = "Reviewed Your Post";
                         } else if ($notify->type == 'comment') { 
                             $icon = "<i style='font-size:30px;' class='far fa-comment ml-2'></i>";
@@ -197,7 +197,7 @@
                           $msg = "Mention you in Post";
                         }?>
                       
-                     <div style="position: relative; border-bottom:4px solid #F5F8FA;" class="box-tweet py-3 ">
+                     <div style="position: relative; border-bottom:4px solid #F5F8FA;" class="box-weet py-3 ">
                         <a href="
                         <?php if ($notify->type == 'follow'){ 
                             echo $user->username;
@@ -206,7 +206,7 @@
                         <?php } ?>  ">
                         <span style="position:absolute; width:100%; height:100%; top:0;left: 0; z-index: 1;"></span>
                         </a>
-                            <div class="grid-tweet">
+                            <div class="grid-weet">
                                 <div class="icon mt-2">
                                     <?php echo $icon; ?>
                                 </div>
@@ -310,7 +310,7 @@
             <script type="text/javascript" src="assets/js/hashtag.js"></script>
           <script type="text/javascript" src="assets/js/like.js"></script>
           <script type="text/javascript" src="assets/js/comment.js?v=<?php echo time(); ?>"></script>
-          <script type="text/javascript" src="assets/js/retweet.js?v=<?php echo time(); ?>"></script>
+          <script type="text/javascript" src="assets/js/reweet.js?v=<?php echo time(); ?>"></script>
       <script src="https://kit.fontawesome.com/38e12cc51b.js" crossorigin="anonymous"></script>
       <!-- <script src="assets/js/jquery-3.4.1.slim.min.js"></script> -->
       <script src="assets/js/jquery-3.5.1.min.js"></script>

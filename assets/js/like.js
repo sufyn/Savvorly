@@ -1,12 +1,12 @@
 $(function () {
   $(document).on("click", ".like-btn", function () {
-    var tweet_id = $(this).data("tweet");
+    var weet_id = $(this).data("weet");
     var user_id = $(this).data("user");
     var counter = $(this).find(".likes-count");
     var count = counter.text();
     var button = $(this);
 
-    //     $.post('http://localhost/savvorly/core/ajax/like.php', {like:tweet_id, user_id:user_id}, function(){
+    //     $.post('http://localhost/savvorly/core/ajax/like.php', {like:weet_id, user_id:user_id}, function(){
     // 	counter.show();
     // 	button.addClass('unlike-btn');
     // 	button.removeClass('like-btn');
@@ -20,7 +20,7 @@ $(function () {
     $.ajax({
       type: "POST",
       url: "core/ajax/like.php",
-      data: { like: tweet_id, user_id: user_id },
+      data: { like: weet_id, user_id: user_id },
       cache: false,
       success: function (data) {
         // var result =   $('.tmp').html();
@@ -37,13 +37,13 @@ $(function () {
   });
 
   $(document).on("click", ".unlike-btn", function () {
-    var tweet_id = $(this).data("tweet");
+    var weet_id = $(this).data("weet");
     var user_id = $(this).data("user");
     var counter = $(this).find(".likes-count");
     var count = counter.text();
     var button = $(this);
 
-    // $.post('http://localhost/savvorly/core/ajax/like.php', {unlike:tweet_id, user_id:user_id}, function(){
+    // $.post('http://localhost/savvorly/core/ajax/like.php', {unlike:weet_id, user_id:user_id}, function(){
     // 	counter.show();
     // 	button.addClass('like-btn');
     // 	button.removeClass('unlike-btn');
@@ -61,7 +61,7 @@ $(function () {
     $.ajax({
       type: "POST",
       url: "core/ajax/like.php",
-      data: { unlike: tweet_id, user_id: user_id },
+      data: { unlike: weet_id, user_id: user_id },
       cache: false,
       success: function (data) {
         // var result =   $('.tmp').html();

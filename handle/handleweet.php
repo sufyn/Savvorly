@@ -8,14 +8,14 @@ use validation\Validator;
 if (User::checkLogIn() === false) 
 header('location: index.php'); 
 
-if (isset($_POST['tweet'])) {
+if (isset($_POST['weet'])) {
 
     $status =  User::checkInput($_POST['status']) ;
 
-    $img = $_FILES['tweet_img'];
+    $img = $_FILES['weet_img'];
     
     if ($_POST['status'] == '' && $img['name'] == '' ) {
-    $_SESSION['errors_tweet'] = ['status or image are required'];
+    $_SESSION['errors_weet'] = ['status or image are required'];
     header('location: ../home.php'); 
     die();
     }
@@ -30,10 +30,10 @@ if (isset($_POST['tweet'])) {
     if ($errors == []) { 
         
         if ($img['name'] != '') {
-        $image = new Image($img , "tweet"); 
-        $tweetImg = $image->new_name ;
+        $image = new Image($img , "weet"); 
+        $weetImg = $image->new_name ;
        
-        } else $tweetImg = null;
+        } else $weetImg = null;
         
        
         
@@ -45,12 +45,12 @@ if (isset($_POST['tweet'])) {
         // create function can handle with all tables and return last inserted id
         $post_id =   User::create('posts' , $data);
         
-        $data_tweet = [
+        $data_weet = [
             'post_id' => $post_id ,
             'status' => $status , 
-            'img' => $tweetImg
+            'img' => $weetImg
         ];
-        User::create('tweets' , $data_tweet);
+        User::create('weets' , $data_weet);
         if ($img['name'] != '') {
         $image->upload(); }
         
@@ -71,7 +71,7 @@ if (isset($_POST['tweet'])) {
                      'status' => '0'
                   ];
           
-                  Tweet::create('notifications' , $data_notify);
+                  weet::create('notifications' , $data_notify);
                 
             } 
             
@@ -82,13 +82,13 @@ if (isset($_POST['tweet'])) {
        
         if(!empty($hashtag) ){ 
 
-            Tweet::addTrend($status);
+            weet::addTrend($status);
         }
         // end add trend
        
         header('location: ../home.php');
     } else {
-        $_SESSION['errors_tweet'] = $errors;
+        $_SESSION['errors_weet'] = $errors;
         header('location: ../home.php');
     }   
 } else header('location: ../home.php');

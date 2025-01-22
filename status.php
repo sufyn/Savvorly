@@ -9,8 +9,8 @@
    header('location: index.php');
 
 
-   $tweet_id =  $_GET['post_id'];
-   $tweet = Tweet::getData($tweet_id);
+   $weet_id =  $_GET['post_id'];
+   $weet = weet::getData($weet_id);
    $who_users = Follow::whoToFollow($user_id);
    $notify_count = User::CountNotification($user_id);
  
@@ -159,7 +159,7 @@
                  <a href="javascript: history.go(-1);"> <i style="font-size:20px;" class="fas fa-arrow-left arrow-style"></i> </a>
                        </div>
                        <div class="col-xs-10 mt-1">
-                           <p class="tweet-name" style="
+                           <p class="weet-name" style="
                            font-weight:700"> Post</p>
                           
                       </div>
@@ -186,127 +186,127 @@
           
           <?php 
 
-                $retweet_sign = false;
-                $retweet_comment =false;
+                $reweet_sign = false;
+                $reweet_comment =false;
                 $qoq = false;
 
-            if (Tweet::isTweet($tweet->id)) {
+            if (weet::isweet($weet->id)) {
 
-              $tweet_user = User::getData($tweet->user_id) ;
-              $tweet_real = Tweet::getTweet($tweet->id);
-              $timeAgo = Tweet::getTimeAgo($tweet->post_on) ; 
-              $likes_count = Tweet::countLikes($tweet->id) ;
-              $user_like_it = Tweet::userLikeIt($user_id ,$tweet->id);
-              $retweets_count = Tweet::countRetweets($tweet->id) ;
-              $user_retweeted_it = Tweet::userRetweeetedIt($user_id ,$tweet->id);
+              $weet_user = User::getData($weet->user_id) ;
+              $weet_real = weet::getweet($weet->id);
+              $timeAgo = weet::getTimeAgo($weet->post_on) ; 
+              $likes_count = weet::countLikes($weet->id) ;
+              $user_like_it = weet::userLikeIt($user_id ,$weet->id);
+              $reweets_count = weet::countReweets($weet->id) ;
+              $user_reweeted_it = weet::userRetweeetedIt($user_id ,$weet->id);
 
-            } else if (Tweet::isRetweet($tweet->id)) {
+            } else if (weet::isReweet($weet->id)) {
 
-              $retweet = Tweet::getRetweet($tweet->id);
+              $reweet = weet::getReweet($weet->id);
 
-              if ($retweet->retweet_msg == null) {
+              if ($reweet->reweet_msg == null) {
                 
-                    if ($retweet->retweet_id == null) {
+                    if ($reweet->reweet_id == null) {
                       
-                      // if retweeted normal tweet
-                      $retweeted_tweet = Tweet::getTweet($retweet->tweet_id);
-                    $tweet_user = User::getData($retweeted_tweet->user_id) ;
-                    $tweet_real = Tweet::getTweet($retweet->tweet_id);
-                    $timeAgo = Tweet::getTimeAgo($tweet_real->post_on) ; 
-                    $likes_count = Tweet::countLikes($retweet->tweet_id) ;
-                    $user_like_it = Tweet::userLikeIt($user_id ,$retweet->tweet_id);
-                    $retweets_count = Tweet::countRetweets($retweet->tweet_id) ;
-                    $user_retweeted_it = Tweet::userRetweeetedIt($user_id ,$retweet->tweet_id); 
-                    $retweeted_user = User::getData($tweet->user_id);
-                    $retweet_sign = true;
+                      // if reweeted normal weet
+                      $reweeted_weet = weet::getweet($reweet->weet_id);
+                    $weet_user = User::getData($reweeted_weet->user_id) ;
+                    $weet_real = weet::getweet($reweet->weet_id);
+                    $timeAgo = weet::getTimeAgo($weet_real->post_on) ; 
+                    $likes_count = weet::countLikes($reweet->weet_id) ;
+                    $user_like_it = weet::userLikeIt($user_id ,$reweet->weet_id);
+                    $reweets_count = weet::countReweets($reweet->weet_id) ;
+                    $user_reweeted_it = weet::userRetweeetedIt($user_id ,$reweet->weet_id); 
+                    $reweeted_user = User::getData($weet->user_id);
+                    $reweet_sign = true;
                     } else {
 
-                      // this condtion if user retweeted qouted tweet or qoute of qoute tweet
+                      // this condtion if user reweeted qouted weet or qoute of qoute weet
 
 
-                    $retweeted_tweet = Tweet::getRetweet($retweet->retweet_id);
+                    $reweeted_weet = weet::getReweet($reweet->reweet_id);
 
-                        if($retweeted_tweet->tweet_id != null) {
-                        // here it's retweeted qouted
-                        // if($retweeted_tweet->) 
-                        $tweet_user = User::getData($retweeted_tweet->user_id) ;
-                        $timeAgo = Tweet::getTimeAgo($retweeted_tweet->post_on) ; 
-                        $likes_count = Tweet::countLikes($retweeted_tweet->post_id) ;
-                        $user_like_it = Tweet::userLikeIt($user_id ,$retweeted_tweet->post_id);
-                        $retweets_count = Tweet::countRetweets($retweeted_tweet->post_id) ;
-                        $user_retweeted_it = Tweet::userRetweeetedIt($user_id ,$retweeted_tweet->post_id);
+                        if($reweeted_weet->weet_id != null) {
+                        // here it's reweeted qouted
+                        // if($reweeted_weet->) 
+                        $weet_user = User::getData($reweeted_weet->user_id) ;
+                        $timeAgo = weet::getTimeAgo($reweeted_weet->post_on) ; 
+                        $likes_count = weet::countLikes($reweeted_weet->post_id) ;
+                        $user_like_it = weet::userLikeIt($user_id ,$reweeted_weet->post_id);
+                        $reweets_count = weet::countReweets($reweeted_weet->post_id) ;
+                        $user_reweeted_it = weet::userRetweeetedIt($user_id ,$reweeted_weet->post_id);
                       
                         
-                        $tweet_inner = Tweet::getTweet($retweeted_tweet->tweet_id);
-                        $user_inner_tweet = User::getData($tweet_inner->user_id) ;
-                        $timeAgo_inner = Tweet::getTimeAgo($tweet_inner->post_on); 
-                        $retweeted_user = User::getData($tweet->user_id);
-                        $retweet_sign = true;
+                        $weet_inner = weet::getweet($reweeted_weet->weet_id);
+                        $user_inner_weet = User::getData($weet_inner->user_id) ;
+                        $timeAgo_inner = weet::getTimeAgo($weet_inner->post_on); 
+                        $reweeted_user = User::getData($weet->user_id);
+                        $reweet_sign = true;
 
-                        $qoute = $retweeted_tweet->retweet_msg;
-                        $retweet_comment = true;
+                        $qoute = $reweeted_weet->reweet_msg;
+                        $reweet_comment = true;
                         } else {
-                            // here is retweeted qouted of qouted
+                            // here is reweeted qouted of qouted
 
-                        $retweet_sign = true;
-                        $tweet_user = User::getData($retweeted_tweet->user_id) ;
+                        $reweet_sign = true;
+                        $weet_user = User::getData($reweeted_weet->user_id) ;
 
-                         $timeAgo = Tweet::getTimeAgo($retweeted_tweet->post_on) ; 
-                        $likes_count = Tweet::countLikes($retweeted_tweet->post_id) ;
-                        $user_like_it = Tweet::userLikeIt($user_id ,$retweeted_tweet->post_id);
-                        $retweets_count = Tweet::countRetweets($retweeted_tweet->post_id) ;
-                        $user_retweeted_it = Tweet::userRetweeetedIt($user_id ,$retweeted_tweet->post_id);
+                         $timeAgo = weet::getTimeAgo($reweeted_weet->post_on) ; 
+                        $likes_count = weet::countLikes($reweeted_weet->post_id) ;
+                        $user_like_it = weet::userLikeIt($user_id ,$reweeted_weet->post_id);
+                        $reweets_count = weet::countReweets($reweeted_weet->post_id) ;
+                        $user_reweeted_it = weet::userRetweeetedIt($user_id ,$reweeted_weet->post_id);
  
                         $qoq = true; // stand for qoute of qoute
-                        $qoute = $retweeted_tweet->retweet_msg;
-                        $tweet_inner = Tweet::getRetweet($retweeted_tweet->retweet_id);
-                        $user_inner_tweet = User::getData($tweet_inner->user_id) ;
-                        $timeAgo_inner = Tweet::getTimeAgo($tweet_inner->post_on);
-                        $inner_qoute  = $tweet_inner->retweet_msg;
+                        $qoute = $reweeted_weet->reweet_msg;
+                        $weet_inner = weet::getReweet($reweeted_weet->reweet_id);
+                        $user_inner_weet = User::getData($weet_inner->user_id) ;
+                        $timeAgo_inner = weet::getTimeAgo($weet_inner->post_on);
+                        $inner_qoute  = $weet_inner->reweet_msg;
                       
                         
 
-                        $retweeted_user = User::getData($tweet->user_id);
+                        $reweeted_user = User::getData($weet->user_id);
 
                         }
                     }
 
             } else {
-              // qoute tweet condtion
-              if ($retweet->retweet_id == null) {
-              $tweet_user = User::getData($tweet->user_id) ;
-              $timeAgo = Tweet::getTimeAgo($tweet->post_on) ; 
-              $likes_count = Tweet::countLikes($tweet->id) ;
-              $user_like_it = Tweet::userLikeIt($user_id ,$tweet->id);
-              $retweets_count = Tweet::countRetweets($tweet->id) ;
-              $user_retweeted_it = Tweet::userRetweeetedIt($user_id ,$tweet->id);
-              $qoute = $retweet->retweet_msg;
-              $retweet_comment = true;
+              // qoute weet condtion
+              if ($reweet->reweet_id == null) {
+              $weet_user = User::getData($weet->user_id) ;
+              $timeAgo = weet::getTimeAgo($weet->post_on) ; 
+              $likes_count = weet::countLikes($weet->id) ;
+              $user_like_it = weet::userLikeIt($user_id ,$weet->id);
+              $reweets_count = weet::countReweets($weet->id) ;
+              $user_reweeted_it = weet::userRetweeetedIt($user_id ,$weet->id);
+              $qoute = $reweet->reweet_msg;
+              $reweet_comment = true;
           
 
-              $tweet_inner = Tweet::getTweet($retweet->tweet_id);
-              $user_inner_tweet = User::getData($tweet_inner->user_id) ;
-              $timeAgo_inner = Tweet::getTimeAgo($tweet_inner->post_on); 
+              $weet_inner = weet::getweet($reweet->weet_id);
+              $user_inner_weet = User::getData($weet_inner->user_id) ;
+              $timeAgo_inner = weet::getTimeAgo($weet_inner->post_on); 
             } else {
 
-            // this condtion for qoute of qoute which retweet_id not null and retweet msg not null
-            $tweet_user = User::getData($tweet->user_id) ;
-            $timeAgo = Tweet::getTimeAgo($tweet->post_on) ; 
-            $likes_count = Tweet::countLikes($tweet->id) ;
-            $user_like_it = Tweet::userLikeIt($user_id ,$tweet->id);
-            $retweets_count = Tweet::countRetweets($tweet->id) ;
-            $user_retweeted_it = Tweet::userRetweeetedIt($user_id ,$tweet->id);
-            $qoute = $retweet->retweet_msg;
+            // this condtion for qoute of qoute which reweet_id not null and reweet msg not null
+            $weet_user = User::getData($weet->user_id) ;
+            $timeAgo = weet::getTimeAgo($weet->post_on) ; 
+            $likes_count = weet::countLikes($weet->id) ;
+            $user_like_it = weet::userLikeIt($user_id ,$weet->id);
+            $reweets_count = weet::countReweets($weet->id) ;
+            $user_reweeted_it = weet::userRetweeetedIt($user_id ,$weet->id);
+            $qoute = $reweet->reweet_msg;
             $qoq = true; // stand for qoute of qoute
             
-            $tweet_inner = Tweet::getRetweet($retweet->retweet_id);
-            $user_inner_tweet = User::getData($tweet_inner->user_id) ;
-            $timeAgo_inner = Tweet::getTimeAgo($tweet_inner->post_on);
-            $inner_qoute = $tweet_inner->retweet_msg;
+            $weet_inner = weet::getReweet($reweet->reweet_id);
+            $user_inner_weet = User::getData($weet_inner->user_id) ;
+            $timeAgo_inner = weet::getTimeAgo($weet_inner->post_on);
+            $inner_qoute = $weet_inner->reweet_msg;
             if($inner_qoute == null) {
                             
-              $tweet_innerr = Tweet::getRetweet($tweet_inner->retweet_id);
-              $inner_qoute = $tweet_innerr->retweet_msg;
+              $weet_innerr = weet::getReweet($weet_inner->reweet_id);
+              $inner_qoute = $weet_innerr->reweet_msg;
 
               // $inner_qoute = "qork";
 
@@ -317,105 +317,105 @@
             }
 
             } 
-             $tweet_link = $tweet->id;
+             $weet_link = $weet->id;
                
-            //  show real tweet comments if retweeted tweet 
-              if ($retweet_sign)
-              $comments = Tweet::comments($retweeted_tweet->id);
-              else  $comments = Tweet::comments($tweet_id);
+            //  show real weet comments if reweeted weet 
+              if ($reweet_sign)
+              $comments = weet::comments($reweeted_weet->id);
+              else  $comments = weet::comments($weet_id);
 
             
-            if($retweet_sign)
-             $comment_count = Tweet::countComments($retweeted_tweet->id);
-             else  $comment_count = Tweet::countComments($tweet->id); 
+            if($reweet_sign)
+             $comment_count = weet::countComments($reweeted_weet->id);
+             else  $comment_count = weet::countComments($weet->id); 
                      
             
             ?>
              
 
               
-          <div class="box-tweet feed" style="position: relative;" >
-                 <a href="status/<?php echo $tweet->id; ?>">
+          <div class="box-weet feed" style="position: relative;" >
+                 <a href="status/<?php echo $weet->id; ?>">
                     <span style="position:absolute; width:100%; height:100%; top:0;left: 0; z-index: 1;"></span>
                  </a>
-            <?php if ($retweet_sign) { ?>
-            <span class="retweed-name"> <i class="fa fa-retweet retweet-name-i" aria-hidden="true"></i> 
-            <a style="position: relative; z-index:100; color:rgb(102, 117, 130);" href="<?php echo $retweeted_user->name; ?> "> <?php  if($retweeted_user->id == $user_id) echo "You";
-        else echo $retweeted_user->name; ?> </a>  reposted</span>
+            <?php if ($reweet_sign) { ?>
+            <span class="retweed-name"> <i class="fa fa-reweet reweet-name-i" aria-hidden="true"></i> 
+            <a style="position: relative; z-index:100; color:rgb(102, 117, 130);" href="<?php echo $reweeted_user->name; ?> "> <?php  if($reweeted_user->id == $user_id) echo "You";
+        else echo $reweeted_user->name; ?> </a>  reposted</span>
              <?php } ?>
-            <div class="grid-tweet">
-                <a style="position: relative; z-index:1000" href="<?php echo $tweet_user->username;  ?>">
+            <div class="grid-weet">
+                <a style="position: relative; z-index:1000" href="<?php echo $weet_user->username;  ?>">
                 <img
-                src="assets/images/users/<?php echo $tweet_user->img; ?>"
+                src="assets/images/users/<?php echo $weet_user->img; ?>"
                 alt=""
-                class="img-user-tweet"
+                class="img-user-weet"
                 />
                 </a >
 
                 <div>
                 <p> 
-                <a style="position: relative; z-index:1000; color:black" href="<?php echo $tweet_user->username;  ?>">
-                <strong> <?php echo $tweet_user->name ?> </strong> 
+                <a style="position: relative; z-index:1000; color:black" href="<?php echo $weet_user->username;  ?>">
+                <strong> <?php echo $weet_user->name ?> </strong> 
                 </a>
-                  <span class="username-savvorly">@<?php echo $tweet_user->username ?> </span>
+                  <span class="username-savvorly">@<?php echo $weet_user->username ?> </span>
                   <span class="username-savvorly"><?php echo $timeAgo ?></span>
                 </p>
                 <p>
                   <?php
-                  // check if it's qoute or normal tweet
-                  if ($retweet_comment || $qoq)
-                  echo  Tweet::getTweetLinks($qoute);
-                  else echo  Tweet::getTweetLinks($tweet_real->status); ?>
+                  // check if it's qoute or normal weet
+                  if ($reweet_comment || $qoq)
+                  echo  weet::getweetLinks($qoute);
+                  else echo  weet::getweetLinks($weet_real->status); ?>
                 </p>
-                  <?php if ($retweet_comment == false && $qoq == false) { ?>
-                <?php if ($tweet_real->img != null) { ?>
-                <p class="mt-post-tweet">
+                  <?php if ($reweet_comment == false && $qoq == false) { ?>
+                <?php if ($weet_real->img != null) { ?>
+                <p class="mt-post-weet">
                   <img
-                    src="assets/images/tweets/<?php echo $tweet_real->img; ?>"
+                    src="assets/images/weets/<?php echo $weet_real->img; ?>"
                     alt=""
-                    class="img-post-tweet"
+                    class="img-post-weet"
                   />
                 </p>
                <?php } } else { ?>
                    <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss --> 
                   
-                  <div  class="mt-post-tweet comment-post" style="position: relative;">
+                  <div  class="mt-post-weet comment-post" style="position: relative;">
                  
-                    <a href="status/<?php echo $tweet_inner->id; ?>">
+                    <a href="status/<?php echo $weet_inner->id; ?>">
                           <span class="" style="position:absolute; width:100%; height:100%; top:0;left: 0; z-index: 2;"></span>
                        </a>
-                  <div class="grid-tweet py-3 "  > 
+                  <div class="grid-weet py-3 "  > 
                  
-                  <a style="position: relative; z-index:1000" href="<?php echo $user_inner_tweet->username;  ?>">
+                  <a style="position: relative; z-index:1000" href="<?php echo $user_inner_weet->username;  ?>">
                     <img
-                    src="assets/images/users/<?php echo $user_inner_tweet->img; ?>"
+                    src="assets/images/users/<?php echo $user_inner_weet->img; ?>"
                     alt=""
-                    class="img-user-tweet"
+                    class="img-user-weet"
                     />
                     </a >
 
                     <div>
                     <p> 
-                    <a style="position: relative; z-index:1000; color:black" href="<?php echo $user_inner_tweet->username;  ?>">
-                    <strong> <?php echo $user_inner_tweet->name ?> </strong> 
+                    <a style="position: relative; z-index:1000; color:black" href="<?php echo $user_inner_weet->username;  ?>">
+                    <strong> <?php echo $user_inner_weet->name ?> </strong> 
                     </a>
-                  <span class="username-savvorly">@<?php echo $user_inner_tweet->username ?> </span>
+                  <span class="username-savvorly">@<?php echo $user_inner_weet->username ?> </span>
                   <span class="username-savvorly"><?php echo $timeAgo_inner ?></span>
                 </p>
                 <p>
                   <?php
                     if ($qoq)
-                    echo Tweet::getTweetLinks($inner_qoute);
-                    else  echo  Tweet::getTweetLinks($tweet_inner->status); ?>
+                    echo weet::getweetLinks($inner_qoute);
+                    else  echo  weet::getweetLinks($weet_inner->status); ?>
                 </p>
                 <?php   // don't show img if qoute of qoute
                 if ($qoq == false) { 
-                if ($tweet_inner->img != null) { ?>
-                <p class="mt-post-tweet">
+                if ($weet_inner->img != null) { ?>
+                <p class="mt-post-weet">
                   <img
-                    src="assets/images/tweets/<?php echo $tweet_inner->img; ?>"
+                    src="assets/images/weets/<?php echo $weet_inner->img; ?>"
                     alt=""
-                    class="img-post-retweet"
+                    class="img-post-reweet"
                   />
                 </p>
                <?php } } ?>
@@ -435,23 +435,23 @@
 
                 <div class="row home-follow pt-3">
                        
-                        <?php if($retweets_count > 0)  { ?>
+                        <?php if($reweets_count > 0)  { ?>
                             <div class="col-md-2 users-count" >
-                            <i class="retweets-u"
-                            data-tweet="<?php 
-                            if($retweet_sign)
-                                echo $retweeted_tweet->id;
-                            else  echo $tweet->id; ?>"> 
-                     <span class="home-follow-count"> <?php echo $retweets_count ; ?> </span> Reposts</i>
+                            <i class="reweets-u"
+                            data-weet="<?php 
+                            if($reweet_sign)
+                                echo $reweeted_weet->id;
+                            else  echo $weet->id; ?>"> 
+                     <span class="home-follow-count"> <?php echo $reweets_count ; ?> </span> Reposts</i>
                         </div> 
                         <?php } ?> 
                         <?php if($likes_count > 0)  { ?>
                         <div class="col-md-2 users-count">
                             <i class="likes-u" 
-                            data-tweet="<?php 
-                            if($retweet_sign)
-                                echo $retweeted_tweet->id;
-                            else  echo $tweet->id; ?>">
+                            data-weet="<?php 
+                            if($reweet_sign)
+                                echo $reweeted_weet->id;
+                            else  echo $weet->id; ?>">
                              <span class="home-follow-count">  <?php echo $likes_count ; ?>  </span> Likes</i>
                         </div>   
                         <?php } ?> 
@@ -461,10 +461,10 @@
                   <div class="grid-box-reaction">
                     <div class="hover-reaction hover-reaction-comment comment"
                     data-user = "<?php echo $user_id; ?>" 
-                    data-tweet = "<?php 
-                    if($retweet_sign)
-                       echo $retweeted_tweet->id;
-                   else  echo $tweet->id; ?>">
+                    data-weet = "<?php 
+                    if($reweet_sign)
+                       echo $reweeted_weet->id;
+                   else  echo $weet->id; ?>">
                      
                       <i class="far fa-comment"></i>
                       <div class="mt-counter likes-count d-inline-block">
@@ -474,30 +474,30 @@
                   </div>
                   <div class="grid-box-reaction">
                 
-                    <div  class="hover-reaction hover-reaction-retweet
-                    <?= $user_retweeted_it ? 'retweeted' : 'retweet' ?> option"
-                    data-tweet="<?php
-                    // send the tweet you wanna undo retweet to undo function
-                    // if the user retweeted it and it's the real tweet
-                    // to send the id of retweeted tweet
-                    // if($user_retweeted_it && !$retweet_sign)
-                    // echo Tweet::retweetRealId($tweet->id);
+                    <div  class="hover-reaction hover-reaction-reweet
+                    <?= $user_reweeted_it ? 'reweeted' : 'reweet' ?> option"
+                    data-weet="<?php
+                    // send the weet you wanna undo reweet to undo function
+                    // if the user reweeted it and it's the real weet
+                    // to send the id of reweeted weet
+                    // if($user_reweeted_it && !$reweet_sign)
+                    // echo weet::reweetRealId($weet->id);
                     // else
-                     echo $tweet->id ;
+                     echo $weet->id ;
                      ?>" 
                     data-user="<?php echo $user_id; ?>
                     "
-                    data-retweeted = "<?php echo $user_retweeted_it; ?>"
-                    data-sign = "<?php echo $retweet_sign; ?>"
-                    data-tmp="<?php echo $retweet_comment; ?>"
+                    data-reweeted = "<?php echo $user_reweeted_it; ?>"
+                    data-sign = "<?php echo $reweet_sign; ?>"
+                    data-tmp="<?php echo $reweet_comment; ?>"
                     data-qoq="<?php echo $qoq; ?>"
                     data-status="<?php echo true; ?>">
 
                     
                       
-                      <i class="fas fa-retweet"></i>
+                      <i class="fas fa-reweet"></i>
                       <div class="mt-counter likes-count d-inline-block">
-                        <p><?php if($retweets_count > 0)  echo $retweets_count ; ?></p>
+                        <p><?php if($reweets_count > 0)  echo $reweets_count ; ?></p>
                       </div>
                      
                       
@@ -513,13 +513,13 @@
                   <div  class="grid-box-reaction"  >
                     <a class="hover-reaction hover-reaction-like 
                     <?= $user_like_it ? 'unlike-btn' : 'like-btn' ?> " 
-                    data-tweet="<?php 
-                     if($retweet_sign) {
-                              if($retweet->tweet_id != null) {
-                                echo $retweet->tweet_id;
-                              } echo $retweet->retweet_id;
-                     }  else echo $tweet->id ;
-                    //  echo Tweet::likedTweetRealId($tweet->id);
+                    data-weet="<?php 
+                     if($reweet_sign) {
+                              if($reweet->weet_id != null) {
+                                echo $reweet->weet_id;
+                              } echo $reweet->reweet_id;
+                     }  else echo $weet->id ;
+                    //  echo weet::likedweetRealId($weet->id);
                     
                      ?>" 
                     data-user="<?php echo $user_id; ?>">
@@ -561,40 +561,40 @@
             
           <!-- comments place --> 
           <?php foreach($comments as $comment) { 
-                     $tweet_user = User::getData($comment->user_id) ;
-                     $timeAgo = Tweet::getTimeAgo($comment->time);
-                     $replies = Tweet::replies($comment->id);
-                     $reply_count = Tweet::countReplies($comment->id);
+                     $weet_user = User::getData($comment->user_id) ;
+                     $timeAgo = weet::getTimeAgo($comment->time);
+                     $replies = weet::replies($comment->id);
+                     $reply_count = weet::countReplies($comment->id);
               ?>
 
           <div class="box-comment feed py-2"  >
                 
           
-            <div class="grid-tweet">
+            <div class="grid-weet">
               <div>
                 <img
-                  src="assets/images/users/<?php echo $tweet_user->img; ?>"
+                  src="assets/images/users/<?php echo $weet_user->img; ?>"
                   alt=""
-                  class="img-user-tweet"
+                  class="img-user-weet"
                 />
               </div>
   
               <div>
                 <p>
-                  <strong> <?php echo $tweet_user->name ?> </strong>
-                  <span class="username-savvorly">@<?php echo $tweet_user->username ?> </span>
+                  <strong> <?php echo $weet_user->name ?> </strong>
+                  <span class="username-savvorly">@<?php echo $weet_user->username ?> </span>
                   <span class="username-savvorly"><?php echo $timeAgo ?></span>
                 </p>
                 <p>
                   <?php
-                 echo  Tweet::getTweetLinks($comment->comment); ?>
+                 echo  weet::getweetLinks($comment->comment); ?>
                 </p>
                     
                 <div class="grid-reactions">
                   <div class="grid-box-reaction-rep">
                     <div class="hover-reaction-rep hover-reaction-comment reply"
                     data-user = "<?php echo $user_id; ?>" 
-                    data-tweet = "<?php 
+                    data-weet = "<?php 
                     echo $comment->id; ?>">
                      
                       <i class="far fa-comment"></i>
@@ -618,31 +618,31 @@
         
                         <!-- replies -->
                 <?php foreach ($replies as $reply) {
-                       $tweet_user = User::getData($reply->user_id) ;
-                       $timeAgo = Tweet::getTimeAgo($reply->time);
+                       $weet_user = User::getData($reply->user_id) ;
+                       $timeAgo = weet::getTimeAgo($reply->time);
                     
                     ?>
                         <div class="box-reply feed"  >
                                 
                         
-                                <div class="grid-tweet">
+                                <div class="grid-weet">
                                 <div>
                                     <img
-                                    src="assets/images/users/<?php echo $tweet_user->img; ?>"
+                                    src="assets/images/users/<?php echo $weet_user->img; ?>"
                                     alt=""
-                                    class="img-user-tweet"
+                                    class="img-user-weet"
                                     />
                                 </div>
                     
                                 <div>
                                     <p>
-                                    <strong> <?php echo $tweet_user->name ?> </strong>
-                                    <span class="username-savvorly">@<?php echo $tweet_user->username ?> </span>
+                                    <strong> <?php echo $weet_user->name ?> </strong>
+                                    <span class="username-savvorly">@<?php echo $weet_user->username ?> </span>
                                     <span class="username-savvorly"><?php echo $timeAgo ?></span>
                                     </p>
                                     <p>
                                     <?php
-                                    echo  Tweet::getTweetLinks($reply->reply); ?>
+                                    echo  weet::getweetLinks($reply->reply); ?>
                                     </p>
                                         
                     
@@ -656,7 +656,7 @@
                             <?php } ?>
             <?php } ?>
          
-          <div class="popupTweet">
+          <div class="popupweet">
 
           </div>
           <div class="popupComment">
@@ -753,7 +753,7 @@
       <script type="text/javascript" src="assets/js/like.js"></script>
       <script type="text/javascript" src="assets/js/users.js"></script>
       <script type="text/javascript" src="assets/js/comment.js?v=<?php echo time(); ?>"></script>
-      <script type="text/javascript" src="assets/js/retweet.js?v=<?php echo time(); ?>"></script>
+      <script type="text/javascript" src="assets/js/reweet.js?v=<?php echo time(); ?>"></script>
       <script type="text/javascript" src="assets/js/follow.js?v=<?php echo time(); ?>"></script>
       <script src="https://kit.fontawesome.com/38e12cc51b.js" crossorigin="anonymous"></script>
       <!-- <script src="assets/js/jquery-3.4.1.slim.min.js"></script> -->

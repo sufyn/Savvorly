@@ -3,16 +3,16 @@
 	$user_id = $_SESSION['user_id'];
   $u_id=1;
   $flag = true;
-if(isset($_POST['retweetby']) && !empty($_POST['retweetby'])){
-	$tweet_id   = $_POST['retweetby'];
+if(isset($_POST['reweetby']) && !empty($_POST['reweetby'])){
+	$weet_id   = $_POST['reweetby'];
 	// $user       = User::getData($user_id);
-	$users = Tweet::usersRetweeeted($tweet_id);
-    $headline = "Retweeted by";
+	$users = weet::usersRetweeeted($weet_id);
+    $headline = "Reweeted by";
 
 } else if (isset($_POST['likeby']) && !empty($_POST['likeby'])) {
-    $tweet_id   = $_POST['likeby'];
+    $weet_id   = $_POST['likeby'];
 	// $user       = User::getData($user_id);
-	$users = Tweet::usersLiked($tweet_id);
+	$users = weet::usersLiked($weet_id);
     $headline = "Liked by";
 
 } else if (isset($_POST['follower']) && !empty($_POST['follower'])) {
@@ -35,12 +35,12 @@ if (isset($profileData)) {
 }
 if ($flag) {
 ?>
-<div class="retweet-popup">
+<div class="reweet-popup">
 <div class="wrap5">
-<div class="retweet-popup-body-wrap popup-users">
-	<div class="retweet-popup-heading users">
+<div class="reweet-popup-body-wrap popup-users">
+	<div class="reweet-popup-heading users">
 		<h3> <?php echo $headline; ?> </h3>
-		<span><button class="close-retweet-popup"><i class="fa fa-times" aria-hidden="true"></i></button></span>
+		<span><button class="close-reweet-popup"><i class="fa fa-times" aria-hidden="true"></i></button></span>
 	</div>
 
 	  <div class="box-share-users">
@@ -96,4 +96,4 @@ if ($flag) {
 
 </div>
 <?php  } ?>
-<!-- Retweet PopUp ends-->
+<!-- Reweet PopUp ends-->

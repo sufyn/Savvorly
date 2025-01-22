@@ -89,7 +89,7 @@ class User extends Connect {
             'count' => '0' , 
             'status' => '0'
             ];
-            Tweet::create('notifications' , $data_notify);
+            weet::create('notifications' , $data_notify);
 
           $_SESSION['welcome'] = 'welcome';
           header('location: ../home.php')  ;
