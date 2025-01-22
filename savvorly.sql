@@ -116,7 +116,7 @@ CREATE TABLE `notifications` (
   `notify_for` int(11) NOT NULL,
   `notify_from` int(11) NOT NULL,
   `target` int(11) NOT NULL,
-  `type` enum('follow','like','reweet','qoute','comment','reply','mention') COLLATE utf16_unicode_ci NOT NULL,
+  `type` enum('follow','like','retweet','qoute','comment','reply','mention') COLLATE utf16_unicode_ci NOT NULL,
   `time` datetime NOT NULL,
   `count` int(11) NOT NULL,
   `status` int(11) NOT NULL
@@ -132,7 +132,7 @@ INSERT INTO `notifications` (`id`, `notify_for`, `notify_from`, `target`, `type`
 (34, 2, 25, 711, 'qoute', '2021-04-29 18:29:24', 1, 0),
 (35, 25, 2, 712, 'qoute', '2021-04-29 18:29:55', 1, 0),
 (36, 2, 25, 712, 'like', '2021-04-29 18:31:11', 1, 0),
-(37, 2, 25, 712, 'reweet', '2021-04-29 18:31:19', 1, 0),
+(37, 2, 25, 712, 'retweet', '2021-04-29 18:31:19', 1, 0),
 (38, 25, 2, 0, 'follow', '2021-04-30 02:16:24', 1, 0),
 (39, 2, 25, 0, 'follow', '2021-04-30 22:56:20', 1, 0),
 (53, 2, 25, 574, 'comment', '2021-05-01 02:21:10', 1, 0),
@@ -194,21 +194,21 @@ INSERT INTO `replies` (`id`, `comment_id`, `user_id`, `reply`, `time`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reweets`
+-- Table structure for table `retweets`
 --
 
-CREATE TABLE `reweets` (
+CREATE TABLE `retweets` (
   `post_id` int(11) NOT NULL,
-  `reweet_msg` varchar(140) COLLATE utf16_unicode_ci DEFAULT NULL,
-  `weet_id` int(11) DEFAULT NULL,
-  `reweet_id` int(11) DEFAULT NULL
+  `retweet_msg` varchar(140) COLLATE utf16_unicode_ci DEFAULT NULL,
+  `tweet_id` int(11) DEFAULT NULL,
+  `retweet_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
 --
--- Dumping data for table `reweets`
+-- Dumping data for table `retweets`
 --
 
-INSERT INTO `reweets` (`post_id`, `reweet_msg`, `weet_id`, `reweet_id`) VALUES
+INSERT INTO `retweets` (`post_id`, `retweet_msg`, `tweet_id`, `retweet_id`) VALUES
 (711, 'good job', 654, NULL),
 (712, '&lt;3', NULL, 711);
 
@@ -239,20 +239,20 @@ INSERT INTO `trends` (`id`, `hashtag`, `created_on`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `weets`
+-- Table structure for table `tweets`
 --
 
-CREATE TABLE `weets` (
+CREATE TABLE `tweets` (
   `post_id` int(11) NOT NULL,
   `status` varchar(140) COLLATE utf16_unicode_ci DEFAULT NULL,
   `img` text COLLATE utf16_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_unicode_ci;
 
 --
--- Dumping data for table `weets`
+-- Dumping data for table `tweets`
 --
 
-INSERT INTO `weets` (`post_id`, `status`, `img`) VALUES
+INSERT INTO `tweets` (`post_id`, `status`, `img`) VALUES
 (362, '@savvorly hello it\'s admin here!', NULL),
 (573, 'Welcome!', 'user-666c72d124aa1.png'),
 (574, '#savvorly is all abt cusine', NULL),
@@ -352,12 +352,12 @@ ALTER TABLE `replies`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `reweets`
+-- Indexes for table `retweets`
 --
-ALTER TABLE `reweets`
+ALTER TABLE `retweets`
   ADD PRIMARY KEY (`post_id`) USING BTREE,
-  ADD KEY `reweet_id` (`reweet_id`),
-  ADD KEY `reweets_ibfk_2` (`weet_id`);
+  ADD KEY `retweet_id` (`retweet_id`),
+  ADD KEY `retweets_ibfk_2` (`tweet_id`);
 
 --
 -- Indexes for table `trends`
@@ -367,9 +367,9 @@ ALTER TABLE `trends`
   ADD UNIQUE KEY `hashtag` (`hashtag`);
 
 --
--- Indexes for table `weets`
+-- Indexes for table `tweets`
 --
-ALTER TABLE `weets`
+ALTER TABLE `tweets`
   ADD PRIMARY KEY (`post_id`);
 
 --
@@ -476,18 +476,18 @@ ALTER TABLE `replies`
   ADD CONSTRAINT `replies_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `reweets`
+-- Constraints for table `retweets`
 --
-ALTER TABLE `reweets`
-  ADD CONSTRAINT `reweets_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reweets_ibfk_2` FOREIGN KEY (`weet_id`) REFERENCES `weets` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reweets_ibfk_3` FOREIGN KEY (`reweet_id`) REFERENCES `reweets` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `retweets`
+  ADD CONSTRAINT `retweets_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `retweets_ibfk_2` FOREIGN KEY (`tweet_id`) REFERENCES `tweets` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `retweets_ibfk_3` FOREIGN KEY (`retweet_id`) REFERENCES `retweets` (`post_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `weets`
+-- Constraints for table `tweets`
 --
-ALTER TABLE `weets`
-  ADD CONSTRAINT `weets_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tweets`
+  ADD CONSTRAINT `tweets_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
